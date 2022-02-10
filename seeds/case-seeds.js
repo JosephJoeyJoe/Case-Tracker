@@ -1,7 +1,7 @@
-const { Case } = require('../models');
+const { Case } = require("../models");
 
-const caseData = [
-    {
-        
-    }
-]
+const caseData = [{}];
+
+const seedCases = () => Case.bulkCreat(caseData);
+
+module.exports = seedCases;
