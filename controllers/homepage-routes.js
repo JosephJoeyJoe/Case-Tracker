@@ -25,7 +25,7 @@ router.get('/', authenticate => {
         const cases = caseData.map(cases => cases.get({
             plain: true
         }));
-    res.render('dashboard', {
+    res.render('homepage', {
         cases,
         loggedIn: true,
         });
