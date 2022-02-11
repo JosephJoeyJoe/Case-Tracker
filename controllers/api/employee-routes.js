@@ -5,9 +5,7 @@ const { Employee } = require("../../models");
 
 // get all employees
 router.get("/", (req, res) => {
-  Employee.findAll({
-    attributes: { exclude: ["password"] },
-  })
+  Employee.findAll({})
     .then((dbUserData) => res.json(dbUserData))
     .catch((err) => {
       console.log(err);
@@ -17,7 +15,6 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   Employee.findOne({
-    attributes: { exclude: ["password"] },
     where: {
       id: req.params.id,
     },
@@ -32,17 +29,27 @@ router.get("/:id", (req, res) => {
       },
     ],
   })
-    .then((dbUserData) => {
-      if (!dbUserData) {
+    .then((dbEmployeeData) => {
+      if (!dbEmployeeData) {
         res.status(404).json({ message: "No employee found with this id" });
         return;
       }
-      res.json(dbUserData);
+      res.json(dbEmployeeData);
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
+
+router.post("/", (req, res) => {
+  Employee.create({
+    last_day: req.body.last_day,
+    symptom_start: req.body.symptom_start,
+  }).catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 module.exports = router;
