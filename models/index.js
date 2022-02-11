@@ -7,7 +7,8 @@ Case.belongsTo(Employee, {
 });
 
 Manager.hasMany(Employee, {
-  foreignKey: "",
+    foreignKey: ''
 });
 
-module.exports = { Case, Employee, Manager };
+module.exports = {Case, Employee, Manager};
+
