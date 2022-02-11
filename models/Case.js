@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-// const sequelize = require(needs to be config to connection file)
+const sequelize = require('../config/connection');
 
 class Case extends Model {}
 
