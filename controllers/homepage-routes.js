@@ -36,3 +36,8 @@ router.get('/', authenticate => {
     })
 })
 
+router.get('*', (req, res) => {
+    res.status(404).send('Cannot access');
+});
+
+module.exports = router;
