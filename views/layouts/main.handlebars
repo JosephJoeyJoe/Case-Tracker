@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Case-Tracker</title>
-     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -26,8 +26,8 @@
                         <article class="kanban-entry grab" id="item1" draggable="true">
                             <div class="kanban-entry-inner">
                                 <div class="kanban-label">
-                                    <h2><a href="#">Madeline G</a> <span>was assigned this case</span></h2>
-                                    <p>Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p>
+                                    <h2><a href="#">Manager #{{manager.id}}</a> <span>was assigned case #{{case.id}}</span></h2>
+                                    <p>Employee #{{employee.id}} last day was {{employee.last_day}}. Their symptoms began {{symptom_start}}.</p>
                                 </div>
                             </div>
                         </article>
@@ -51,8 +51,8 @@
                             <div class="kanban-entry-inner">
 
                                 <div class="kanban-label">
-                                    <h2><a href="#">Jessica L</a> <span>was assigned this case</span></h2>
-                                    <p>Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p>
+                                    <h2><a href="#">Manager #{{manager.id}}</a> <span>was assigned this case #{{case.id}}</span></h2>
+                                    <p>Employee #{{employee.id}} last day was {{employee.last_day}}. Their symptoms began {{symptom_start}}.</p>
                                 </div>
                             </div>
                         </article>
@@ -76,8 +76,8 @@
                             <div class="kanban-entry-inner">
 
                                 <div class="kanban-label">
-                                    <h2><a href="#">Joey B</a> <span>Was assigned to this case</span></h2>
-                                    <p>Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p>
+                                    <h2><a href="#">Manager #{{manager.id}}</a> <span>was assigned to this case #{{case.id}}</span></h2>
+                                    <p>Employee #{{employee.id}} last day was {{employee.last_day}}. Their symptoms began {{symptom_start}}.</p>
                                 </div>
                             </div>
                         </article>
