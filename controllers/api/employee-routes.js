@@ -1,8 +1,6 @@
 const router = require("express").Router();
 const { Employee } = require("../../models");
 
-// this route is not finished
-
 // get all employees
 router.get("/", (req, res) => {
   Employee.findAll({})

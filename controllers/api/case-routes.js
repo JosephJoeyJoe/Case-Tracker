@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { Case } = require("../../models");
-// const withAuth = require('../../utils/auth');
 
 router.get("/", (req, res) => {
   Case.findAll()
