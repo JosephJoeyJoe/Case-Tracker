@@ -4,7 +4,7 @@ const { Employee } = require("../../models");
 // get all employees
 router.get("/", (req, res) => {
   Employee.findAll({})
-    .then((dbUserData) => res.json(dbUserData))
+    .then((dbEmployeeData) => res.json(dbEmployeeData))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
