@@ -4,6 +4,7 @@ const Manager = require("./Manager");
 
 Case.belongsTo(Employee, {
   foreignKey: "case_id",
+  constraints: false
 });
 
 Manager.hasMany(Employee, {
