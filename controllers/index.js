@@ -5,7 +5,8 @@ const router = require("express").Router();
 
 router.use('/', homepage);
 router.use('/api', apiRoutes); 
-router.use('/dashboard', dashboard);
+router.use('/dashboard', dashboard);   
+                   
 
 router.use((req, res) => {
     res.status(404).end();
