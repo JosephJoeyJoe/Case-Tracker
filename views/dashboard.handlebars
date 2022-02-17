@@ -1,0 +1,137 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case-Tracker</title>
+    <link rel="stylesheet" href="/Case-Tracker/public/stylesheets/style.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+      integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+
+    <div class="container-fluid">
+      <div id="sortableKanbanBoards" class="column">
+
+        <div class="panel panel-primary kanban-col">
+          <div class="panel-heading">
+            TO DO
+            <i class="fa fa-2x fa-plus-circle pull-right"></i>
+          </div>
+          <div class="panel-body">
+            <div id="TODO" class="kanban-centered">
+
+              <article class="kanban-entry grab" id="item1" draggable="true">
+                <div class="kanban-entry-inner">
+                  <div class="kanban-label">
+                    <h2><a href="#">Manager #{{manager.id}}</a>
+                      <span>was assigned case #{{case.id}}</span></h2>
+                    <p>Employee #{{employee.id}}
+                      last day was
+                      {{employee.last_day}}. Their symptoms began
+                      {{symptom_start}}.</p>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+          <div class="panel-footer">
+            <a href="#">Add a card...</a>
+          </div>
+        </div>
+
+        <div class="panel panel-primary kanban-col">
+          <div class="panel-heading">
+            In Progress
+            <i class="fa fa-2x fa-plus-circle pull-right"></i>
+          </div>
+          <div class="panel-body">
+            <div id="DOING" class="kanban-centered">
+
+              <article class="kanban-entry grab" id="item5" draggable="true">
+                <div class="kanban-entry-inner">
+
+                  <div class="kanban-label">
+                    <h2><a href="#">Manager #{{manager.id}}</a>
+                      <span>was assigned this case #{{case.id}}</span></h2>
+                    <p>Employee #{{employee.id}}
+                      last day was
+                      {{employee.last_day}}. Their symptoms began
+                      {{symptom_start}}.</p>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+          <div class="panel-footer">
+            <a href="#">Add a card...</a>
+          </div>
+        </div>
+
+        <div class="panel panel-primary kanban-col">
+          <div class="panel-heading">
+            Completed
+            <i class="fa fa-2x fa-plus-circle pull-right"></i>
+          </div>
+          <div class="panel-body">
+            <div id="DONE" class="kanban-centered">
+
+              <article class="kanban-entry grab" id="item5" draggable="true">
+                <div class="kanban-entry-inner">
+
+                  <div class="kanban-label">
+                    <h2><a href="#">Manager #{{manager.id}}</a>
+                      <span>was assigned to this case #{{case.id}}</span></h2>
+                    <p>Employee #{{employee.id}}
+                      last day was
+                      {{employee.last_day}}. Their symptoms began
+                      {{symptom_start}}.</p>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+          <div class="panel-footer">
+            <a href="#">Add a card...</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div
+      class="modal modal-static fade"
+      id="processing-modal"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="text-center">
+              <i class="fa fa-refresh fa-5x fa-spin"></i>
+              <h4>Processing...</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script src="/public/javascript/logout.js"></script>
