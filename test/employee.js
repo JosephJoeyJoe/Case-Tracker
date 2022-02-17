@@ -38,12 +38,15 @@ describe('Employees API', ()=>{
                 symptom_start: 2020-01-28
             }
             chai.request(server)
-            .get('/api/employees')
+            .post('/api/employees')
             .send(post)
             .end((err,res)=>{
                 res.should.have.status(200);  
-               expect [{post}].to.have.property('numbers');
-                //res.body.should.have.a('object');   
+                res.body.should.have.a('object');   
+                  res.body.should.have.property('id')
+                res.body.should.have.property('last_day')
+                res.body.should.have.property('symptom_start')
+              
                 done();
             })
         })
