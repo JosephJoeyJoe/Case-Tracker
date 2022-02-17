@@ -44,7 +44,8 @@ router.post("/", (req, res) => {
   Employee.create({
     last_day: req.body.last_day,
     symptom_start: req.body.symptom_start,
-  }).catch((err) => {
+  }).then(dbPostData => res.json(dbPostData))
+  .catch((err) => {
     console.log(err);
     res.status(500).json(err);
   });
