@@ -4,7 +4,7 @@ const { Employee } = require("../../models");
 // get all employees
 router.get("/", (req, res) => {
   Employee.findAll({})
-    .then((dbEmployeeData) => res.json(dbEmployeeData))
+    // .then((dbEmployeeData) => res.json(dbEmployeeData))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
@@ -44,10 +44,12 @@ router.post("/", (req, res) => {
   Employee.create({
     last_day: req.body.last_day,
     symptom_start: req.body.symptom_start,
-  }).catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+  })
+    .then((dbEmployeeData) => res.json(dbEmployeeData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
