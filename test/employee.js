@@ -43,7 +43,7 @@ describe('Employees API', ()=>{
             .end((err,res)=>{
                 res.should.have.status(200);  
                 res.body.should.have.a('object');   
-                  res.body.should.have.property('id')
+                res.body.should.have.property('id')
                 res.body.should.have.property('last_day')
                 res.body.should.have.property('symptom_start')
               
