@@ -61,8 +61,8 @@ router.get('/case/:id', (req, res) => {
     })
 })
 
-router.get('*', (req, res) => {
-    res.status(404).send('Cannot access');
-});
+// router.get('*', (req, res) => {
+//     res.status(404).send('Cannot access');
+// });
 
 module.exports = router;
