@@ -45,11 +45,13 @@ router.post("/", (req, res) => {
     last_day: req.body.last_day,
     symptom_start: req.body.symptom_start,
   })
+ 
     .then((dbEmployeeData) => res.json(dbEmployeeData))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
+
 });
 
 module.exports = router;
