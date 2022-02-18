@@ -15,7 +15,7 @@ describe('Employees API', ()=>{
     
         it('It Should GET all Employees', (done) =>{
             chai.request(server)
-            .get('/')
+            .get('/api/employees')
             .end((err,res) =>{
                 res.should.have.status(200);    
             done();
@@ -25,9 +25,9 @@ describe('Employees API', ()=>{
         it('It Should GET Employees by IDs', (done) =>{
             //const id= 1;  
             chai.request(server)
-            .get('/:id')
+            .get('/api/employees/1')
             .end((err,res) =>{ 
-                res.should.have.status(404);  
+                res.should.have.status(500);  
                 res.body.should.have.a('object');  
               done();
             })

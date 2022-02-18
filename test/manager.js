@@ -10,47 +10,52 @@ var should = require('chai').should();
 
 chai.use(chaihttp);
 
-// testing the employees GET,GET:id,POST routes
+// testing the Managers GET, /login, /logout routes
 describe('Managers API', ()=>{
     
         it('It Should GET all Managers', (done) =>{
             chai.request(server)
-            .get('/')
+            .get('/api/managers')
             .end((err,res) =>{
                 res.should.have.status(200);    
             done();
             })
          })
 
-        // it('It Should GET Employees by IDs', (done) =>{
-        //     //const id= 1;  
-        //     chai.request(server)
-        //     .get('/:id')
-        //     .end((err,res) =>{ 
-        //         res.should.have.status(404);  
-        //         res.body.should.have.a('object');  
-        //       done();
-        //     })
-        // })
+        it('testing logout POST', (done) =>{
+             
+            chai.request(server)
+            .get('/logout')
+            .end((err,res) =>{ 
+                res.should.have.status(404);  
+                res.body.should.have.a('object');  
+              done();
+            })
+        })
         it('It Should POST Managers username&email&password',(done)=>{
-            const post={
+            const login={
                 username: "jpmorgan",
                 email: "jp@gmail.com",
                 password: "password123"
             }
             chai.request(server)
-            .post('/api/managers')
-            .send(post)
+            .post('/login')
+            .send(login)
             .end((err,res)=>{
-                res.should.have.status(500);  
-                res.body.should.have.a('object');  
-                res.body.should.have.property(''); 
+                res.should.have.status(404);
+                res.body.should.be.a('object');
+                //res.body.should.have.property('email');
+                done(); 
+            })
+        
+            
+        })
+})
+
+             // res.should.have.status(500);  
+             // res.body.should.have.a('object');  
+              // res.body.should.have.property(''); 
                 // res.body.should.have.property('username');
                 // res.body.should.have.property('email');
                 // res.body.should.have.property('password');
               
-                done();
-            })
-        })
-})
-
