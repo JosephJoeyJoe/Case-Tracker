@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
       const cases = caseData.map(cases => cases.get({
           plain: true
       }));
-  res.render('dashboard', {
+  res.render('login', {
       cases,
       loggedIn: req.session.loggedIn
       });
