@@ -1,3 +1,4 @@
+
 const Case = require("./Case");
 const Employee = require("./Employee");
 const Manager = require("./Manager");
@@ -8,9 +9,14 @@ Case.belongsTo(Employee, {
 });
 
 Manager.hasMany(Employee, {
-    foreignKey: '',
+    foreignKey: 'manager_id',
     constraints: false
 });
+Employee.belongsTo(Manager, {
+  foreignKey: 'manager_id',
+  constraints: false
+});
+
 
 module.exports = {Case, Employee, Manager};
 

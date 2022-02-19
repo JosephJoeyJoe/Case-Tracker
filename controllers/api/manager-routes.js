@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Manager } = require("../../models");
+const { Manager,Case,Employee } = require("../../models");
 
 router.get("/", (req, res) => {
   Manager.findAll({
@@ -11,6 +11,30 @@ router.get("/", (req, res) => {
       res.status(500).json(err);
     });
 });
+
+router.get("/:id", (req, res) => {
+    Manager.findOne({
+      attributes: { exclude: ["password"] },
+      where: {
+        id: req.params.id
+      },
+      include:[{ 
+        model: Employee,
+          attributes: ['id', 'case_id', 'manager_id', 'last_day', 'symptom_start']
+      
+      }]
+    })  .then(dbManagerData=> {
+        if (!dbManagerData) {
+          res.status(404).json({ message: 'No Manger found with this id' });
+          return;
+        }
+        res.json(dbManagerData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
 
 router.post("/", (req, res) => {
   Manager.create({
@@ -37,7 +61,7 @@ router.post("/login", (req, res) => {
   Manager.findOne({
     where: {
       email: req.body.email,
-    },
+    }
   }).then((dbManagerData) => {
     if (!dbManagerData) {
       res.status(400).json({ message: "No manager with that email address!" });
@@ -70,5 +94,48 @@ router.post("/logout", (req, res) => {
     res.status(404).end();
   }
 });
+router.put('/:id', (req, res) => {
+    // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
+  
+    // pass in req.body instead to only update what's passed through
+    Manager.update(req.body, {
+      individualHooks: true,
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbManagerData=> {
+        if (!dbManagerData) {
+          res.status(404).json({ message: 'No Manager found with this id' });
+          return;
+        }
+        res.json(dbManagerData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+  
+  router.delete('/:id', (req, res) => {
+    Manager.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbManagerData => {
+        if (!dbManagerData) {
+          res.status(404).json({ message: 'No Manager found with this id' });
+          return;
+        }
+        res.json(dbManagerData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
 
+
+  
 module.exports = router;

@@ -27,24 +27,12 @@ router.get("/", authenticate, (req, res) => {
       ],
     })
       .then((caseData) => {
-        const cases = caseData.map((cases) =>
-          cases.get({
-            plain: true,
-          })
-        );
-        res.render("/dashboard", {
-          cases,
-          loggedIn: true,
-        });
-      })
+        const cases = caseData.map((cases) => cases.get({ plain: true }));
+        res.render("/dashboard", {cases, loggedIn: true });
+    })
       .catch((err) => {
         console.log(err);
         res.status(500).json(err);
       });
   });
-
-// router.get('*', (req, res) => {
-//     res.status(404).send('Cannot access');
-// });
-
-module.exports = router;
+  module.exports = router;
