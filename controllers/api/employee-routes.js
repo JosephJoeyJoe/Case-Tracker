@@ -1,10 +1,11 @@
 const router = require("express").Router();
-const { Employee } = require("../../models");
+const authenticate = require("../../utils/auth");
+const { Employee ,Case,Manager} = require("../../models");
 
 // get all employees
 router.get("/", (req, res) => {
   Employee.findAll({})
-    // .then((dbEmployeeData) => res.json(dbEmployeeData))
+     .then((dbEmployeeData) => res.json(dbEmployeeData))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
@@ -16,16 +17,14 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    include: [
-      {
-        model: Case,
-        attributes: ["id"],
-      },
-      {
-        model: Manager,
-        attributes: ["id"],
-      },
-    ],
+    attributes: [
+        "id",
+        "case_id",
+        "manager_id",
+        "last_day",
+        "symptom_start",
+      ],
+    
   })
     .then((dbEmployeeData) => {
       if (!dbEmployeeData) {
@@ -39,8 +38,8 @@ router.get("/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
-
-router.post("/", (req, res) => {
+//needs to be looked at 
+router.post("/",  authenticate,(req, res) => {
   Employee.create({
     last_day: req.body.last_day,
     symptom_start: req.body.symptom_start,
@@ -54,4 +53,45 @@ router.post("/", (req, res) => {
 
 });
 
+router.put('/:id', authenticate, (req, res) => {
+    Post.update( req.body,
+    
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    )
+      .then(dbEmployeeData => {
+        if (!dbEmployeeData) {
+          res.status(404).json({ message: 'No Employee found with this id' });
+          return;
+        }
+        res.json(dbEmployeeData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+    });
+    
+    router.delete('/:id', authenticate, (req, res) => {
+    console.log('id', req.params.id);
+    Post.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbEmployeeData => {
+        if (!dbEmployeeData) {
+          res.status(404).json({ message: 'No Employee found with this id' });
+          return;
+        }
+        res.json(dbEmployeeData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+    });
 module.exports = router;

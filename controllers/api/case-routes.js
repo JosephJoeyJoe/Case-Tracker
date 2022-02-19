@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Case } = require("../../models");
+const authenticate = require("../../utils/auth");
 
 router.get("/", (req, res) => {
   Case.findAll()
@@ -10,7 +11,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", authenticate, (req, res) => {
   Case.destroy({
     where: {
       id: req.params.id,
