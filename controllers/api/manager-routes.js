@@ -33,7 +33,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/login", (req, res) => {
   Manager.findOne({
     where: {
       email: req.body.email,
