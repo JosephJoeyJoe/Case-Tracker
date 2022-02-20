@@ -4,12 +4,11 @@ const sequelize = require("../config/connection");
 class Employee extends Model {
   static(body, models) {
     return models.Manager.create({
-      id: body.id,
-      case_id: body.id,
+      id: body.id
     }).then(() => {
       return Employee.findOne({
         where: {
-          id: body.case_id,
+          id: body.employee_id,
         },
         attributes: ["id", "manager_id", "last_day", "symptom_start"],
         include: [
