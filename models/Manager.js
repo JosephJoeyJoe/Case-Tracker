@@ -16,24 +16,20 @@ Manager.init(
       allowNull: false,
       autoIncrement: true,
     },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: true
+        isEmail: true,
       },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull:true,
-        len: [4]
+        notNull: true,
+        len: [4],
       },
     },
   },
