@@ -38,8 +38,8 @@ router.get("/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
-//needs to be looked at 
-router.post("/", authenticate,(req, res) => {
+//needs to be looked at -CHANGED THE ROUTE TO SIGNUP
+router.post("/signup", authenticate,(req, res) => {
   Employee.create({
     last_day: req.body.last_day,
     symptom_start: req.body.symptom_start,
