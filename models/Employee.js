@@ -3,35 +3,35 @@ const sequelize = require("../config/connection");
 
 
 class Employee extends Model {
-  static upvote(body, models) {
-    return models.Manager.create({
-      id: body.id,
-      case_id: body.id
-    }).then(() => {
-      return Employee.findOne({
-        where: {
-          id: body.case_id
-        },
-        attributes: [
-          'id',
-          'case_id',
-          'manager_id',
-          'last_day',
-          'symptom_start'
-        ],
-        include: [
-          {
-            model: models.case,
-            attributes: ['id'],
-            include: {
-              model: models.manager,
-              attributes: ['id']
-            }
-          }
-        ]
-      })
-    })
-  }
+  // static upvote(body, models) {
+  //   return models.Manager.create({
+  //     id: body.id,
+  //     case_id: body.id
+  //   }).then(() => {
+  //     return Employee.findOne({
+  //       where: {
+  //         id: body.case_id
+  //       },
+  //       attributes: [
+  //         'id',
+  //         'case_id',
+  //         'manager_id',
+  //         'last_day',
+  //         'symptom_start'
+  //       ],
+  //       include: [
+  //         {
+  //           model: models.case,
+  //           attributes: ['id'],
+  //           include: {
+  //             model: models.manager,
+  //             attributes: ['id']
+  //           }
+  //         }
+  //       ]
+  //     })
+  //   })
+  //}
 }
 
 Employee.init(
@@ -42,13 +42,14 @@ Employee.init(
       allowNull: false,
       autoIncrement: true,
     },
-    case_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "case",
-        key: "id",
-      },
-    },
+    // case_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true
+    //   // references: {
+    //   //   model: "case",
+    //   //   key: "id",
+    //   // },
+    // },
     manager_id: {
       type: DataTypes.INTEGER,
       references: {

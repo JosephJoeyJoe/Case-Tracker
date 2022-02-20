@@ -1,4 +1,4 @@
-const seedCases = require("./case-seeds");
+//const seedCases = require("./case-seeds");
 const seedEmployees = require("./employee-seeds");
 const seedManagers = require("./manager-seeds");
 
@@ -6,7 +6,7 @@ const sequelize = require("../config/connection");
 
 const seedAll = async () => {
   await sequelize.sync({ force: true });
-  await seedCases();
+ // await seedCases();
   await seedEmployees();
   await seedManagers();
 
