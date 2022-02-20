@@ -1,38 +1,34 @@
 const router = require('express').Router();
 const authenticate = require("../utils/auth");
-const {Employee, Case, Manager} = require('../models');
+const {Employee, Manager} = require('../models');
 
-router.get("/", authenticate, (req, res) => {
+router.get('/', authenticate, (req, res) => {
     Manager.findAll({
       where: {
         id: req.session.id,
       },
   
-      attributes: ["id"],
+      attributes: ['id'],
       include: [
         {
           model: Employee,
-          attributes: [
-            "id",
-            "case_id",
-            "manager_id",
-            "last_day",
-            "symptom_start",
-          ],
-          include: {
-            model: Case,
-            attributes: ["id"],
-          },
+          attributes: ['id', 'case_id', 'manager_id', 'last_day', 'symptom_start'],
         },
       ],
     })
-      .then((caseData) => {
-        const cases = caseData.map((cases) => cases.get({ plain: true }));
-        res.render("/dashboard", {cases, loggedIn: true });
-    })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
+    .then(managerData => {
+      const managers = managerData.map(manager => manager.get({
+        plain: true
+      }));
+    res.render('dashboard', {
+      managers,
+      loggedIn: true
       });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    })
   });
+
   module.exports = router;

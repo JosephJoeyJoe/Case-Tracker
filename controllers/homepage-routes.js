@@ -1,80 +1,62 @@
 const router = require("express").Router();
-// const req = require("express/lib/request");
-// const res = require("express/lib/response");
 const sequelize = require("../config/connection");
-const { Employee, Case, Manager } = require("../models");
+const { Employee, Manager } = require("../models");
 
 router.get('/', (req, res) => {
-  Case.findAll({
-      attributes: ['id'],
-      include: [{
-          model: Employee,
-          attributes: ['id', 'case_id', 'manager_id', 'last_day', 'symptom_start'],
-          include: {
-              model: Manager,
-              attributes: ['id']
-          }
-      }]
+  Employee.findAll({
+    attributes: ['id', 'manager_id', 'last_day', 'symptom_start'],
+    include: [{
+      model: Manager,
+      attributes: ['id', 'username', 'email', 'password']
+    }]
   })
-  .then(caseData => {
-      const cases = caseData.map(cases => cases.get({
-          plain: true
-      }));
+  .then(employeeCases => {
+    const employees = employeeCases.map(employee => employee.get({
+    }));
   res.render('dashboard', {
-      cases,
-      loggedIn: req.session.loggedIn
-      });
+    employees,
+    loggedIn: req.session.loggedIn
+    });
   })
   .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+    console.log(err);
+    res.status(500).json(err);
   })
 })
 
-router.get('/case/:id', (req, res) => {
-  Case.findOne({
+router.get('/employee/:id', (req, res) => {
+  Employee.findOne({
     where: {
-        id: req.params.id
-      },
-      attributes: ['id'],
-      include: [{
-          model: Employee,
-          attributes: ['id', 'case_id', 'manager_id', 'last_day', 'symptom_start'],
-          include: {
-              model: Manager,
-              attributes: ['id']
-          }
-      }]
+      id: req.params.id
+    },
+    attributes: ['id', 'manager_id', 'last_day', 'symptom_start'],
+    include: [{
+      model: Manager,
+      attributes: ['id', 'username', 'email', 'password']
+    }]
   })
-  .then(caseData => {
-      if (!caseData) {
-          res.status(404).json({ message: 'No case found with that id'});
-          return;
-      }
-      const oneCase = caseData.get({plain: true});
-      res.render('one-case', {oneCase, loggedIn: req.session.loggedIn});
-  })
-  .catch(err => {
-      console.loggedIn(err);
-      res.status(500).json(err);
+  .then(employeeCases => {
+    if (!employeeCases) {
+      res.status(404).json({ message: 'No employee found with that id'});
+      return;
+    }
   })
 })
 
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
-      res.redirect('/dashboard');
+      res.redirect('/');
       return;
     }
-  
     res.render('login');
   });
   
   router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
-      res.redirect('/login');
+      res.redirect('/');
       return;
     }
-  
     res.render('signup');
   });
+  
 module.exports = router;
