@@ -2,13 +2,12 @@ async function newFormHandler(event) {
   event.preventDefault();
 
   const newEmployee = document.querySelector(
-    'input[case-id="case_id", manager-id="manager_id", last-day="last_day", symptom-start="symptom_start"]'
+    'input[manager-id="manager_id", last-day="last_day", symptom-start="symptom_start"]'
   ).value;
 
   const response = await fetch(`/api/employees`, {
     method: "POST",
     body: JSON.stringify({
-      case_id,
       manager_id,
       last_day,
       symptom_start,
