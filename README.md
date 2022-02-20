@@ -17,5 +17,7 @@ The kanban is organized with cases under the catagories of pending and completed
 Add a close-contact notification email to those who have been exposed / are in the same department with the infected employee. 
 
 ## Screenshot:
+![project-2](https://user-images.githubusercontent.com/45181939/154864167-4c0168b2-e912-416e-869a-94028fafb8d4.png)
 
 ## Deployed Application Link:
+https://secure-fortress-47190.herokuapp.com/
