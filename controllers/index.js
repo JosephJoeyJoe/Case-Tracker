@@ -1,5 +1,6 @@
 const homeRoutes = require('./homepage-routes');
 const dashboardRoutes = require('./manager-dashboard-routes');
+const router = require("express").Router();
 
 router.use('/', homeRoutes);
 router.use('/dashboard', dashboardRoutes);
