@@ -1,8 +1,11 @@
 const router = require("express").Router();
-//const { Router } = require("express");
+
 const sequelize = require("../config/connection");
 const { Employee, Manager } = require("../models");
 
+router.get('/',function (req,res) {
+  res.render('login')
+})
 router.get("/", (req, res) => {
   Employee.findAll({
     attributes: ["id", "manager_id", "last_day", "symptom_start"],
@@ -16,7 +19,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/employees/:id", (req, res) => {
+router.get("/employee/:id", (req, res) => {
   Employee.findOne({
     where: {
       id: req.params.id,
@@ -33,7 +36,7 @@ router.get("/employees/:id", (req, res) => {
         return;
       }
       const oneEmployee = employeeData.get({ plain: true });
-      res.render("one-employee", { oneEmployee, loggedIn: req.session.loggedIn });
+      res.render("sign", { oneEmployee, loggedIn: req.session.loggedIn });
     })
     .catch((err) => {
       console.loggedIn(err);

@@ -24,7 +24,7 @@ router.get("/", authenticate, (req, res) => {
       const employees = employeeData.map((employees) =>
         employees.get({ plain: true })
       );
-      res.render("/login", { employees, loggedIn: true });
+      res.render("/dashboard", { employees, loggedIn: true });
     })
     .catch((err) => {
       console.log(err);
