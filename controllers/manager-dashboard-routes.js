@@ -2,7 +2,7 @@ const router = require("express").Router();
 const authenticate = require("../utils/auth");
 const { Employee, Manager } = require("../models");
 
-router.get("/", authenticate, (req, res) => {
+router.get("/login", authenticate, (req, res) => {
   Manager.findAll({
     where: {
       id: req.session.id,

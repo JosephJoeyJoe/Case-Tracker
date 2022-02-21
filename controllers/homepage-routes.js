@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Router } = require("express");
+//const { Router } = require("express");
 const sequelize = require("../config/connection");
 const { Employee, Manager } = require("../models");
 
@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/employee/:id", (req, res) => {
+router.get("/employees/:id", (req, res) => {
   Employee.findOne({
     where: {
       id: req.params.id,
