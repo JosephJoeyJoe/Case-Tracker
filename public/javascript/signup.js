@@ -2,7 +2,7 @@ const { response } = require("express");
 
 async function signupFormHandler() {
   const email = document.querySelector("#email").value.trim();
-  const passworword = document.querySelector("#password").value.trim();
+  const password = document.querySelector("#password").value.trim();
 
   if (email && password) {
     document
