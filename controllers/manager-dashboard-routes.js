@@ -2,7 +2,7 @@ const router = require("express").Router();
 const authenticate = require("../utils/auth");
 const { Employee, Manager } = require("../models");
 
-router.get("/login", authenticate, (req, res) => {
+router.get("/", authenticate, (req, res) => {
   Manager.findAll({
     where: {
       id: req.session.id,
@@ -24,7 +24,7 @@ router.get("/login", authenticate, (req, res) => {
       const employees = employeeData.map((employees) =>
         employees.get({ plain: true })
       );
-      res.render("/dashboard", { employees, loggedIn: true });
+      res.render("/login", { employees, loggedIn: true });
     })
     .catch((err) => {
       console.log(err);
