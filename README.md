@@ -20,4 +20,4 @@ Add a close-contact notification email to those who have been exposed / are in t
 ![project-2](https://user-images.githubusercontent.com/45181939/154864167-4c0168b2-e912-416e-869a-94028fafb8d4.png)
 
 ## Deployed Application Link:
-https://secure-fortress-47190.herokuapp.com/
+https://fathomless-cliffs-14331.herokuapp.com/
